@@ -1,28 +1,25 @@
 package sample.webmvc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/electronics")
 public class UserController {
 
+	// @RequestParam can read Query Parameter
+	
 	@RequestMapping("/")
-	public String greet() {
+	public String greet(@RequestParam(name="user", defaultValue = "GuestUser") String user, Model model) {
 		System.out.println("UserController.greet()");
-		return "electronics";
+		
+		model.addAttribute("user", user);
+		
+		return "welcome";
 
 	}
 
-//	/WEB-INF/JSP/welcome.jsp
-
-//	@RequestMapping(value =  "/movies" ,method = RequestMethod.GET)
-	@GetMapping(value = { "/movies", "/films" })
-	public String movie() {
-		System.out.println("UserController.movie()");
-		return "movies";
-
-	}
 
 }
