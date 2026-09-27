@@ -1,10 +1,11 @@
 package sample.webmvc.dao;
 
-import javax.transaction.Transactional;
 
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import sample.webmvc.entity.User;
 
@@ -12,16 +13,11 @@ import sample.webmvc.entity.User;
 public class UserDao {
 
 	@Autowired
-	 HibernateTemplate hibernateTemplate;
-	
-
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
+	 private SessionFactory sessionFactory;
 
 	@Transactional
 	public void saveUser(User user) {
-		hibernateTemplate.save(user);
+		sessionFactory.openSession().persist(user);
 		System.out.println("UserDao.saveUser()");
 	}
 

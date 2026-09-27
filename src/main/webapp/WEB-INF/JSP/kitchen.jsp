@@ -9,7 +9,8 @@
 <body bgcolor="green">
 
 
-	<h1>Hello User This is your KITCHEN Appliance web Page</h1>
+	<h1>Hello User This is your kitchen web Page</h1>
+
 
 
 </body>

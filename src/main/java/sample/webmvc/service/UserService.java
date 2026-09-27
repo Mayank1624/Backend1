@@ -19,7 +19,7 @@ public class UserService {
 	}
 
 
-	@Transactional(readOnly = false)
+	@Transactional
 	public void saveUser(User user) {
 		userDao.saveUser(user);
 	}

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+]<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,8 @@
 <body bgcolor="green">
 
 
-	<h1>Hello User This is your FOOTWEAR web Page</h1>
+	<h1>Hello User This is your footwear web Page</h1>
+	
 
 
 </body>

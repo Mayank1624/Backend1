@@ -9,9 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.hibernate.HibernateTransactionManager;
+import org.springframework.orm.jpa.hibernate.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -48,10 +47,6 @@ public class SpringConfiguration implements WebMvcConfigurer {
 		return sessionFactory;
 	}
 
-	@Bean
-	public HibernateTemplate hibernateTemplate(SessionFactory sessionFactory) {
-		return new HibernateTemplate(sessionFactory);
-	}
 
 	@Bean
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
