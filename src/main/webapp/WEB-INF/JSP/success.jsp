@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h1>Hello User This is Spring MVC ORM Integration Demo Project</h1>
 	<h2>Hi User Your ID is : ${user.id}</h2>
 	<h2>Hi User Your Name is : ${user.name}</h2>

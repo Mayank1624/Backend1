@@ -1,4 +1,4 @@
-7package sample.webmvc.controller;
+package sample.webmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

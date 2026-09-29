@@ -30,7 +30,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/java11");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setPassword("1234");
 		return dataSource;
 	}
 
@@ -40,7 +40,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan("sample.webmvc.entity");
 		Properties hibernateProperties = new Properties();
-		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		hibernateProperties.put("hibernate.show_sql", "true");
 		hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
 		sessionFactory.setHibernateProperties(hibernateProperties);
