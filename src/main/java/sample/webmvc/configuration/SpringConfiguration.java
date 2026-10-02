@@ -20,38 +20,10 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @ComponentScan(basePackages = "sample.webmvc")
-@EnableTransactionManagement
 @Configuration
 public class SpringConfiguration implements WebMvcConfigurer {
 
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/java11");
-		dataSource.setUsername("root");
-		dataSource.setPassword("1234");
-		return dataSource;
-	}
 
-	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("sample.webmvc.entity");
-		Properties hibernateProperties = new Properties();
-		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		hibernateProperties.put("hibernate.show_sql", "true");
-		hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
-		sessionFactory.setHibernateProperties(hibernateProperties);
-		return sessionFactory;
-	}
-
-
-	@Bean
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		return new HibernateTransactionManager(sessionFactory);
-	}
 
 	@Bean
 	public ViewResolver viewResolver() {

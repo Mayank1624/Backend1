@@ -1,6 +1,8 @@
 package sample.webmvc.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,47 +11,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import sample.webmvc.entity.User;
-import sample.webmvc.service.UserService;
 
 @Controller
+@ResponseBody
 public class UserController {
 
-	@Autowired
-	 UserService userService;
-	
+    static Map<Integer, User> users = new HashMap<>();
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+    static {
+        users.put(1, new User(1, "Atif", "Male", "Ballia"));
+        users.put(2, new User(2, "Dilshad", "Male", "Dramanganj"));
+        users.put(3, new User(3, "Vijay", "Male", "Khaga"));
+        users.put(4, new User(4, "Abhishek", "Male", "Mirjapur"));
+        users.put(5, new User(5, "Varun", "Male", "Ballia"));
+    }
 
+    @GetMapping
+    public User greet() {
+        System.out.println("UserController.greet");
+        return new User(99, "Dummy", "No", "Planet not found");
+    }
 
-	@GetMapping("/")
-	public String greet() {
-		System.out.println("UserController.greet : ");
-		
-		return "welcome";
+    @GetMapping("/{id}")
+    public User pathVariable(@PathVariable("id") int id) {
+        System.out.println("UserController.pathVariable : " + id);
+        return users.get(id);
+    }
 
-	}
-	
+    @GetMapping("/all-users")
+    public Map<Integer, User> getAllUsers() {
+        System.out.println("UserController.getAllUsers()");
+        return users;
+    }
 
-	
-	@GetMapping("/{id}")
-	@ResponseBody
-	public User pathVariablle(@PathVariable(name = "id") int id) {
-		System.out.println("UserController.pathVariablle : "+id);
-		return userService.getUserById(id);
-	}
-	
-//   @PostMapping("/save-user")
-	@PostMapping
-	@ResponseBody
-	public User saveUser(@RequestBody User user) {
-		System.out.println("UserController.saveUser : ");
-		System.out.println(user);
-		
-		return userService.saveUser(user);
+    @PostMapping
+    public User saveUser(@RequestBody User user) {
+        System.out.println("UserController.saveUser");
+        System.out.println(user);
 
-	}
-	
+        users.put(user.getId(), user);
 
+        return user;
+    }
 }
