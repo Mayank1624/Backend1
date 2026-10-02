@@ -40,7 +40,8 @@ public class UserController {
 		return userService.getUserById(id);
 	}
 	
-	@PostMapping("/save-user")
+//   @PostMapping("/save-user")
+	@PostMapping
 	@ResponseBody
 	public User saveUser(@RequestBody User user) {
 		System.out.println("UserController.saveUser : ");
